@@ -12,7 +12,9 @@ void setup()
 	for (int j = 0; j < 50; j++) {
 		particles[j] = new OddballParticle();
 	}
-	particles[1] = new JumboParticle();
+	for (int k = 50; k <= 51; k++) {
+		particles[k] = new JumboParticle();
+	}
 }
 void draw()
 {
@@ -32,7 +34,7 @@ class NormalParticle implements Particle
 		myX = (int)(Math.random()*51)+375;
 		myY = (int)(Math.random()*51)+375;
 		myAngle = Math.PI*2*Math.random();
-		mySpeed = (Math.random()*3)+0.1;
+		mySpeed = (Math.random()*2)+0.1;
 		myColor = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
 	}
 	public void move() {
@@ -67,7 +69,7 @@ class OddballParticle implements Particle //uses an interface
 		myX = (int)(Math.random()*51)+375;
 		myY = (int)(Math.random()*51)+375;
 		myAngle = Math.PI*2*Math.random();
-		mySpeed = Math.random()+0.1;
+		mySpeed = 3;
 		myColor = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
 	}
 	public void move() {
@@ -76,8 +78,6 @@ class OddballParticle implements Particle //uses an interface
 		if (myX > 800 || myX < 0 || myY > 800 || myY < 0) {
 			myX = mouseX;
 			myY = mouseY;
-			myAngle = Math.PI*2*Math.random();
-			mySpeed = (Math.random()*2)+0.1;
 			myColor = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
 		}
 		myAngle += 0.025;
@@ -87,7 +87,6 @@ class OddballParticle implements Particle //uses an interface
 		noStroke();
 		rect((int)myX, (int)myY, 20, 20);
 	}
-
 }
 class JumboParticle extends NormalParticle //uses inheritance
 {
