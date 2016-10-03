@@ -19,11 +19,12 @@ void setup()
 void draw()
 {
 	//your code here
-	background(0);
 	for (int i = 0; i < particles.length; i++) {
 		particles[i].show();
 		particles[i].move();
 	}
+	fill(0, 0, 0, 20);
+	rect(0, 0, 800, 800);
 }
 class NormalParticle implements Particle
 {
@@ -64,28 +65,21 @@ class OddballParticle implements Particle //uses an interface
 {
 	//your code here
 	double myX, myY, myAngle, mySpeed;
-	int myColor;
 	OddballParticle() {
 		myX = (int)(Math.random()*51)+375;
 		myY = (int)(Math.random()*51)+375;
 		myAngle = Math.PI*2*Math.random();
-		mySpeed = 3;
-		myColor = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
+		mySpeed = Math.random()*2+2;
 	}
 	public void move() {
 		myX += mySpeed*Math.cos(myAngle);
 		myY += mySpeed*Math.sin(myAngle);
-		if (myX > 800 || myX < 0 || myY > 800 || myY < 0) {
-			myX = mouseX;
-			myY = mouseY;
-			myColor = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
-		}
 		myAngle += 0.025;
 	}
 	public void show() {
-		fill(myColor);
+		fill(255);
 		noStroke();
-		rect((int)myX, (int)myY, 20, 20);
+		ellipse((int)myX, (int)myY, 15, 15);
 	}
 }
 class JumboParticle extends NormalParticle //uses inheritance
